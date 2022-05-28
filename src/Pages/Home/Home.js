@@ -34,11 +34,11 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
   width: "100%",
   margin: "0 50px",
   [theme.breakpoints.up("sm")]: {
-    height: "85vh",
+    height: "84vh",
     width: "100%",
   },
   [theme.breakpoints.up("md")]: {
-    height: "85vh",
+    height: "84vh",
     width: "50%",
   },
 }));

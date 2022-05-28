@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { Typography, Grid, Paper, Button, Box } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
   margin: "10px 0",
@@ -9,7 +10,7 @@ const CustomPaper = styled(Paper)(({ theme }) => ({
 }));
 const StyledGrid = styled(Paper)(({ theme }) => ({
   margin: "10px 0",
-  padding: "8px 0",
+  padding: "18px 0",
   border: "2px solid #ccc",
   width: "100%",
   height: "100%",
@@ -17,9 +18,12 @@ const StyledGrid = styled(Paper)(({ theme }) => ({
 
 const StyledButton = styled(Button)(({ theme }) => ({
   margin: "15px 15px",
-  padding: "12px",
+  padding: "16px",
   backgroundColor: "#ccc",
   color: "#333",
+  "&:hover": {
+    backgroundColor: "#e2e620",
+  },
 }));
 
 const StyledNavButton = styled(Button)((theme) => ({
@@ -35,14 +39,36 @@ function Question({
   setcurrentQuestionNo,
   options,
   name,
+  correctAnswer,
+  score,
+  setScore,
 }) {
   // console.log(question, options);
+  const navigate = useNavigate();
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    // console.log("calling");
+    setDisabled(false);
+  }, [currentQuestionNo]);
 
   const handleNext = () => {
     if (currentQuestionNo < 9) {
       setcurrentQuestionNo((prev) => prev + 1);
     } else {
-      console.log("Display Result");
+      navigate("/result");
+      // console.log("Display Result");
+    }
+  };
+
+  const exithandler = () => {
+    navigate("/");
+  };
+
+  const addScore = (option, index) => {
+    setDisabled(true);
+    if (option === correctAnswer) {
+      setScore((prev) => prev + 1);
     }
   };
 
@@ -61,7 +87,7 @@ function Question({
 
       <Grid container justifyContent="space-between" my={3}>
         <Typography>Category: {question.category}</Typography>
-        <Typography>Score : 0</Typography>
+        <Typography>Score : {score}</Typography>
       </Grid>
       {/* 
       <Grid container justifyContent="center">
@@ -79,6 +105,8 @@ function Question({
                 width: { xs: "94%", sm: "94%", md: "46%", lg: "47%" },
               }}
               key={index}
+              onClick={() => addScore(option, index)}
+              disabled={disabled}
             >
               {option}
             </StyledButton>
@@ -90,21 +118,28 @@ function Question({
         <StyledNavButton
           sx={{
             backgroundColor: "#eb6c5e",
+            "&:hover": {
+              backgroundColor: "#e0311d",
+            },
             color: "#fff",
             width: { xs: "100%", sm: "94%", md: "46%", lg: "47%" },
           }}
+          onClick={exithandler}
         >
           Exit
         </StyledNavButton>
         <StyledNavButton
           sx={{
             backgroundColor: "#36e03c",
+            "&:hover": {
+              backgroundColor: "#0abf10",
+            },
             color: "#fff",
             width: { xs: "100%", sm: "94%", md: "46%", lg: "47%" },
           }}
           onClick={handleNext}
         >
-          Next
+          {currentQuestionNo < 9 ? "Next" : "Submit"}
         </StyledNavButton>
       </Grid>
     </Grid>

@@ -27,6 +27,7 @@ function App() {
     error: false,
     questions: "",
   });
+  const [score, setScore] = useState(0);
 
   // const [progress, showProgress] = useState(false);
 
@@ -48,7 +49,6 @@ function App() {
         ...settings,
         questions: data.results,
       });
-     
     } catch (err) {
       console.log(err);
     } finally {
@@ -100,8 +100,13 @@ function App() {
               />
             }
           />
-          <Route path="/quiz" element={<Quiz settings={settings} />} />
-          <Route path="/result" element={<Result />} />
+          <Route
+            path="/quiz"
+            element={
+              <Quiz settings={settings} score={score} setScore={setScore} />
+            }
+          />
+          <Route path="/result" element={<Result score={score} />} />
         </Routes>
       </Box>
 

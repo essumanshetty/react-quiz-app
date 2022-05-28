@@ -13,7 +13,7 @@ const FullWidthBox = styled(Box)(({ theme }) => ({
   alignItems: "center",
 }));
 
-function Quiz({ settings }) {
+function Quiz({ settings, score, setScore }) {
   const { questions, name } = settings;
   const [currentQuestionNo, setcurrentQuestionNo] = useState(0);
   const [options, setOptions] = useState(null);
@@ -25,7 +25,7 @@ function Quiz({ settings }) {
 
   useEffect(() => {
     // console.log(settings);
-    console.log(currentQuestionNo);
+    // console.log(currentQuestionNo);
     if (questions.length) {
       setOptions(
         shuffleArray([
@@ -37,7 +37,7 @@ function Quiz({ settings }) {
   }, [questions, currentQuestionNo]);
 
   return (
-    <Box sx={{ width: "100%", height: { md: "85vh" } }}>
+    <Box sx={{ width: "100%", height: { md: "84vh" } }}>
       {options?.length ? (
         <Box mx={3}>
           <Question
@@ -46,6 +46,9 @@ function Quiz({ settings }) {
             setcurrentQuestionNo={setcurrentQuestionNo}
             options={options}
             name={name}
+            correctAnswer={questions[currentQuestionNo].correct_answer}
+            score={score}
+            setScore={setScore}
           />
         </Box>
       ) : (
