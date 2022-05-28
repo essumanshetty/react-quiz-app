@@ -1,4 +1,4 @@
-import { Box, CircularProgress, styled } from "@mui/material";
+import { Box, styled } from "@mui/material";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Pages/Home/Home";
@@ -12,9 +12,11 @@ import axios from "axios";
 
 const StyledBox = styled(Box)({
   backgroundColor: "#fcfcfc",
-  minHeight: "100vh",
-  margin: "2px",
-  position: "relative",
+  // minHeight: "100vh",
+  // maxWidth: '1300px',
+  // margin:'auto',
+  // margin: "2px",
+  // position: "relative",
 });
 
 function App() {
@@ -26,12 +28,12 @@ function App() {
     questions: "",
   });
 
-  const [progress, showProgress] = useState(false);
+  // const [progress, showProgress] = useState(false);
 
   const navigate = useNavigate();
 
   const fetchQuestions = async () => {
-    showProgress(true);
+    // showProgress(true);
 
     const { category, difficulty } = settings;
 
@@ -44,13 +46,13 @@ function App() {
       // console.log(data);
       setSettings({
         ...settings,
-        questions: data,
+        questions: data.results,
       });
      
     } catch (err) {
       console.log(err);
     } finally {
-      showProgress(false);
+      // showProgress(false);
     }
   };
 
@@ -84,7 +86,7 @@ function App() {
       <Header />
       {/* Spinner */}
 
-      {progress && <CircularProgress />}
+      {/* {progress && <CircularProgress />} */}
 
       <Box>
         <Routes>

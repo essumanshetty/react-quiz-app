@@ -19,6 +19,7 @@ const StyledImage = styled("img")(({ theme }) => ({
   [theme.breakpoints.down("xs")]: {
     display: "none",
   },
+  
 }));
 
 const textFieldStyles = {
