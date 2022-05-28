@@ -4,6 +4,8 @@ import { Box } from "@mui/system";
 
 const StyledContainer = styled(Box)({
 //   border: "1px solid green",
+backgroundColor: '#333',
+color: '#fff'
 });
 
 
@@ -11,7 +13,7 @@ const StyledContainer = styled(Box)({
 
 function Header() {
   return <StyledContainer>
-      <Typography color="#333" align="center" variant="h4" gutterBottom>Quiz App</Typography>
+      <Typography color="#fff" align="center" variant="h4" gutterBottom>Quiz App</Typography>
       <Divider/>
   </StyledContainer>;
 }

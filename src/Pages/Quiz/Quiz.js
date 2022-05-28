@@ -1,6 +1,7 @@
 import React from 'react'
 
-function Quiz() {
+function Quiz({settings}) {
+  console.log(settings);
   return (
     <div>Quiz</div>
   )
