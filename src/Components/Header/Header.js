@@ -5,7 +5,9 @@ import { Box } from "@mui/system";
 const StyledContainer = styled(Box)({
 //   border: "1px solid green",
 backgroundColor: '#333',
-color: '#fff'
+color: '#fff',
+// display:'flex',
+// alignItems:'center'
 });
 
 

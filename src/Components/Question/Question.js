@@ -73,7 +73,8 @@ function Question({
   };
 
   const exithandler = () => {
-    navigate("/");
+    window.location.href = "/";
+    // navigate("/");
   };
 
   const addScore = (option, index) => {
@@ -180,7 +181,7 @@ function Error({ setError }) {
     <Alert
       sx={{
         width: "100%",
-        marginBottom: "30px",
+        marginBottom: "12px",
         backgroundColor: "tomato",
         color: "#fff",
       }}
