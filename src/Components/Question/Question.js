@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
-import { Typography, Grid, Paper, Button, Box } from "@mui/material";
+import { Typography, Grid, Paper, Button, Box, Alert } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import "./Question.css";
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
   margin: "10px 0",
@@ -45,14 +46,24 @@ function Question({
 }) {
   // console.log(question, options);
   const navigate = useNavigate();
-  const [disabled, setDisabled] = useState(false);
+  const [selected, setSelected] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     // console.log("calling");
-    setDisabled(false);
+    setSelected(false);
   }, [currentQuestionNo]);
 
   const handleNext = () => {
+    if (!selected) {
+      setError(true);
+
+      setTimeout(() => {
+        setError(false);
+      }, 1500);
+      return;
+    }
+
     if (currentQuestionNo < 9) {
       setcurrentQuestionNo((prev) => prev + 1);
     } else {
@@ -66,9 +77,20 @@ function Question({
   };
 
   const addScore = (option, index) => {
-    setDisabled(true);
+    setSelected(option);
     if (option === correctAnswer) {
       setScore((prev) => prev + 1);
+    }
+  };
+
+  const setClassName = (option) => {
+    console.log("coming....", option);
+    if (selected === option && selected === correctAnswer) {
+      return "green";
+    } else if (selected === option && selected !== correctAnswer) {
+      return "red";
+    } else if (option === correctAnswer) {
+      return "green";
     }
   };
 
@@ -94,6 +116,8 @@ function Question({
         <Typography align="center">Question {currentQuestionNo + 1}</Typography>
       </Grid> */}
 
+      {error && <Error setError={setError} />}
+
       <StyledGrid>
         <Typography align="center" fontWeight={600} fontSize={18} my={2}>
           {currentQuestionNo + 1}. &nbsp; {question.question}
@@ -102,11 +126,16 @@ function Question({
           {options.map((option, index) => (
             <StyledButton
               sx={{
-                width: { xs: "94%", sm: "94%", md: "46%", lg: "47%" },
+                width: { xs: "92%", sm: "95%", md: "46%", lg: "47.3%" },
               }}
               key={index}
               onClick={() => addScore(option, index)}
-              disabled={disabled}
+              disabled={selected ? true : false}
+              // className={selected && setClassName(option)}
+              style={{
+                backgroundColor: selected && setClassName(option),
+                color: selected && "#fff",
+              }}
             >
               {option}
             </StyledButton>
@@ -126,7 +155,7 @@ function Question({
           }}
           onClick={exithandler}
         >
-          Exit
+          Quit
         </StyledNavButton>
         <StyledNavButton
           sx={{
@@ -143,6 +172,23 @@ function Question({
         </StyledNavButton>
       </Grid>
     </Grid>
+  );
+}
+
+function Error({ setError }) {
+  return (
+    <Alert
+      sx={{
+        width: "100%",
+        marginBottom: "30px",
+        backgroundColor: "tomato",
+        color: "#fff",
+      }}
+      severity="error"
+      onClose={() => setError(false)}
+    >
+      Please select any option
+    </Alert>
   );
 }
 

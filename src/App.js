@@ -103,7 +103,9 @@ function App() {
           <Route
             path="/quiz"
             element={
-              <Quiz settings={settings} score={score} setScore={setScore} />
+              <Quiz settings={settings} score={score} setScore={setScore} 
+              name= {settings.name}
+              />
             }
           />
           <Route path="/result" element={<Result score={score} />} />
