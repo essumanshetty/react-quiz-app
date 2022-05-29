@@ -73,8 +73,8 @@ function Question({
   };
 
   const exithandler = () => {
-    window.location.href = "/";
-    // navigate("/");
+    // window.location.href =  "/";
+    navigate("/");
   };
 
   const addScore = (option, index) => {
