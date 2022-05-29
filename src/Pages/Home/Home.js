@@ -3,6 +3,8 @@ import Categories from "../../Data/Categories";
 
 import { Box, styled, TextField, Button, MenuItem, Alert } from "@mui/material";
 
+import banner from "./Images/banner.png";
+
 const StyledBox = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
@@ -19,7 +21,6 @@ const StyledImage = styled("img")(({ theme }) => ({
   [theme.breakpoints.down("xs")]: {
     display: "none",
   },
-  
 }));
 
 const textFieldStyles = {
@@ -54,7 +55,7 @@ function Home({ settings, setSettings, submitHandler }) {
   return (
     <StyledBox>
       <Box>
-        <StyledImage src="/Images/banner.png" alt="banner" />
+        <StyledImage src={banner} alt="banner" />
       </Box>
       <FullWidthBox>
         {settings.error && (
