@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, styled, Typography } from "@mui/material";
 import Header from "./Components/Header/Header";
 import Footer from "./Components/Footer/Footer";
 import Home from "./Pages/Home/Home";
@@ -103,12 +103,32 @@ function App() {
           <Route
             path="/quiz"
             element={
-              <Quiz settings={settings} score={score} setScore={setScore} 
-              name= {settings.name}
+              <Quiz
+                settings={settings}
+                score={score}
+                setScore={setScore}
+                name={settings.name}
               />
             }
           />
           <Route path="/result" element={<Result score={score} />} />
+
+          <Route
+            path="*"
+            element={
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  width: "100%",
+                  height: { xs: "84vh", sm: "84vh", md: "84vh", lg: "84vh" },
+                }}
+              >
+                <Typography variant="h2" >Page Not Found !!!! Please Check the URL</Typography>
+              </Box>
+            }
+          />
         </Routes>
       </Box>
 

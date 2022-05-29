@@ -53,13 +53,14 @@ function Quiz({ settings, score, setScore }) {
         </Box>
       ) : (
         <FullWidthBox>
-          {" "}
-          <CircularProgress
-            sx={{
-              color: "#333",
-              fontSize: "30px",
-            }}
-          />
+        
+            <CircularProgress
+              sx={{
+                color: "#333",
+                fontSize: "30px",
+              }}
+            />
+          
         </FullWidthBox>
       )}
     </Box>
