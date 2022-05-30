@@ -12,6 +12,7 @@ const StyledBox = styled(Box)(({ theme }) => ({
   // border: "1px solid green",
   [theme.breakpoints.down("sm")]: {
     flexDirection: "column",
+    padding : '0 8px'
   },
 }));
 
@@ -69,6 +70,8 @@ function Home({ settings, setSettings, submitHandler }) {
           name="name"
           value={settings.name}
           onChange={changeHandler}
+          autoComplete ={false}
+          autoSave={false}
         />
         <TextField
           sx={textFieldStyles}
@@ -97,7 +100,7 @@ function Home({ settings, setSettings, submitHandler }) {
         >
           <MenuItem value="easy">Easy</MenuItem>
           <MenuItem value="medium">Medium</MenuItem>
-          <MenuItem value="difficulty">Difficulty</MenuItem>
+          <MenuItem value="hard">Difficulty</MenuItem>
         </TextField>
 
         <Button

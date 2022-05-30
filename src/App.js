@@ -125,7 +125,9 @@ function App() {
                   height: { xs: "84vh", sm: "84vh", md: "84vh", lg: "84vh" },
                 }}
               >
-                <Typography variant="h2" >Page Not Found !!!! Please Check the URL</Typography>
+                <Typography variant="h2">
+                  Page Not Found !!!! Please Check the URL
+                </Typography>
               </Box>
             }
           />

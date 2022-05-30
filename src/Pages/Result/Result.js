@@ -24,8 +24,8 @@ function Result({ score, name }) {
   const navigate = useNavigate();
 
   const takeAnother = () => {
-    // window.location.href = "/";
-    navigate("/");
+    window.location.href = window.location.pathname;
+    // navigate("/");
   };
 
   useEffect(() => {

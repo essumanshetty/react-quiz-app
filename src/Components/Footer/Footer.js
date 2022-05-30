@@ -12,22 +12,26 @@ const boxStyle = {
   color: "#fff",
   width: "100%",
   padding: "8px",
-  marginTop:'8px'
+  marginTop: "8px",
 };
 
 const StyledLink = styled("a")((theme) => ({
   textDecoration: "none",
   color: "#fff",
   marginLeft: "3px",
+  "&:hover": {
+    color: "blue",
+    textDecoration: "underline",
+  },
 }));
 
 function Footer() {
   return (
-    <Box sx={boxStyle} >
+    <Box sx={boxStyle}>
       <Typography align="center">
-        Made with 🧡 by
-        <StyledLink href="https://www.google.com" target="_blank">
-          essumanshetty
+        Made by
+        <StyledLink href="https://github.com/essumanshetty" target="_blank">
+          Suman Shetty
         </StyledLink>
       </Typography>
     </Box>

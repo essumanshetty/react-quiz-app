@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { Typography, Grid, Paper, Button, Box, Alert } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import AlertDialogSlide from "../Dialog/AlertDialog";
 import "./Question.css";
 
 const CustomPaper = styled(Paper)(({ theme }) => ({
@@ -49,6 +50,16 @@ function Question({
   const [selected, setSelected] = useState(false);
   const [error, setError] = useState(false);
 
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     // console.log("calling");
     setSelected(false);
@@ -73,8 +84,10 @@ function Question({
   };
 
   const exithandler = () => {
-    // window.location.href =  "/";
-    navigate("/");
+    handleClickOpen();
+
+    // window.location.href = window.location.pathname;
+    // navigate("/");
   };
 
   const addScore = (option, index) => {
@@ -97,6 +110,15 @@ function Question({
 
   return (
     <Grid container>
+      {open && (
+        <AlertDialogSlide
+          open={open}
+          setOpen={setOpen}
+          handleClickOpen={handleClickOpen}
+          handleClose={handleClose}
+        />
+      )}
+
       <CustomPaper
         component={Grid}
         container
